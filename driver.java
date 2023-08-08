@@ -4,11 +4,11 @@ public class driver extends algorithms{
 	public static void main(String[] args) {
 		
 		// 5 x 5 grid
-		char[][] bfsGraph = {{'X', 'O', 'X', 'X', 'X'},
+		char[][] bfsGraph = {{'X', 'X', 'X', 'X', 'X'},
 							{'X', 'O', 'X', 'X', 'X'},
-							{'X', 'S', 'X', 'O', 'O'},
-							{'X', 'X', 'X', 'X', 'X'},
-							{'X', 'X', 'X', 'X', 'X'}};
+							{'X', 'S', 'O', 'O', 'X'},
+							{'X', 'X', 'X', 'O', 'X'},
+							{'X', 'X', 'X', 'E', 'X'}};
 		
 		// Starting coordinates
 		int startRow = 0;

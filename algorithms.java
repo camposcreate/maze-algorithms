@@ -9,6 +9,8 @@ public class algorithms {
 		
 		// Define data structure
 		Queue<int[]> q = new LinkedList<>();
+		int[][] parentRow = new int[bfsGraph.length][bfsGraph[0].length];
+		int[][] parentCol = new int[bfsGraph.length][bfsGraph[0].length];
 		boolean[][] visited = new boolean[bfsGraph.length][bfsGraph[0].length];
 		
 		// Starting coordinates
@@ -23,13 +25,6 @@ public class algorithms {
 			int r = curr[0];
 			int c = curr[1];
 			
-			// Edge cases -> path found
-			if (r == 0 || r == bfsGraph.length - 1 || c == 0 || c == bfsGraph[0].length - 1) {
-				System.out.println("Path found!");
-				path = true;
-				return;
-			}
-			
 			// Get neighbors
 			for (int[] neighbors : getNeighbors(bfsGraph, r, c)) {
 				int nr = neighbors[0]; // neighbor row
@@ -40,6 +35,13 @@ public class algorithms {
 				if (!visited[nr][nc] && bfsGraph[nr][nc] == val) {
 					q.add(neighbors);
 					visited[nr][nc] = true;
+					parentRow[nr][nc] = r;
+					parentCol[nr][nc] = c;
+				} else if (bfsGraph[nr][nc] == 'E') {
+					System.out.println("Path found!");
+					reconstructPath(parentRow, parentCol, nr, nc);
+					path = true;
+					return;
 				}
 			} // end for
 		} // end while()
@@ -48,7 +50,7 @@ public class algorithms {
 			return;
 		}
 	} // end floodFill()
-	
+
 	public static ArrayList<int[]> getNeighbors(char[][] graph, int r, int c) {
 		
 		// Defines ArrayList to record neighbor positions
@@ -64,5 +66,30 @@ public class algorithms {
 		}
 		return neighbor;
 		
+	}
+	
+	public static void reconstructPath(int[][] parentRow, int[][] parentCol, int endR, int endC) {
+		// Stores shortest path from 'E' to 'S'
+		ArrayList<int[]> path = new ArrayList<>();
+		
+		int r = endR;
+		int c = endC;
+		
+		// Backtracks from 'E' -> repeatedly moves to the parent cell
+		while (parentRow[r][c] != 0 || parentCol[r][c] != 0) {
+			path.add(0, new int[] {r, c});
+			int tempR = parentRow[r][c];
+			int tempC = parentCol[r][c];
+			r = tempR;
+			c = tempC;
+		}
+		// Add starting position after loop -> since 'S' has no parent add it to
+		// the beginning of our path ArrayList
+		path.add(0, new int[] {r, c});
+		
+		// Prints the path from ArrayList -> row and col indices of each cell
+		for (int[] cell : path) {
+			System.out.println(cell[0] + ", " + cell[1]);
+		}
 	}
 }
