@@ -1,6 +1,6 @@
 # maze-algorithms
 
-This Java project demonstrates the implementation of various maze-solving algorithms to find a direct path out of a 2D maze. The maze is represented as a 2D grid, where 'S' denotes the starting position, 'O' represents walkable slots, and 'X' denotes non-walkable slots. The objective is to determine if there is a direct path from the starting position 'S' to any edge of the maze.
+This Java project demonstrates the implementation of various maze-solving algorithms to find a shortest path from a starting and ending point (respectively) given a maze. The maze is represented as a 2D grid, where 'S' denotes the starting position, 'O' represents walkable slots, 'X' denotes non-walkable slots, and 'E' represents the ending position. The objective is to determine if there is a direct path from 'S' to 'E', and if so, find its shortest path.
 
 ## Table of Contents
 - [Introduction](#introduction)
@@ -30,7 +30,7 @@ git clone https://github.com/camposcreate/maze-solving-algorithms.git
 
 ## Usage
 
-To use the maze-solving algorithms, modify the `driver.java` file to define your 2D maze grid. The grid should be a 2D character array, where 'S' represents the starting position, 'O' represents walkable slots, and 'X' represents non-walkable slots. Update the `row` and `col` variables in the `main` method to specify the starting position.
+To use the maze-solving algorithms, modify the `driver.java` file to define your 2D maze grid. The grid should be a 2D character array, where 'S' represents the starting position, 'O' represents walkable slots, 'X' represents non-walkable slots, and 'E' represents the ending position. Update the 2D-array `bfsGraph` accordingly in the `main` method to create your own implementation.
 
 Run the `main` method to see the output of the algorithm. The program will inform you if a direct path out of the maze is found or not.
 
@@ -38,7 +38,7 @@ Run the `main` method to see the output of the algorithm. The program will infor
 
 ### 1. Breadth-First Search (BFS)
 
-The BFS algorithm starts from the given starting position 'S' and explores the maze in a breadth-first manner. It uses a queue to store the cells to visit and an ArrayList to keep track of visited cells. If a direct path to any edge of the maze is found, the algorithm will print "Path found! There is a direct path out of the maze." Otherwise, it will print "Path not found!"
+The BFS algorithm starts from the given starting position 'S' and explores the maze in a breadth-first manner. It uses a queue to store the cells to visit and an ArrayList to keep track of visited cells. If a direct path to ending position 'E' is found, the algorithm will print "Path found!" (and its coordinates). Otherwise, it will print "Path not found!"
 
 ### 2. Depth-First Search (DFS) - *to be implemented*
 
